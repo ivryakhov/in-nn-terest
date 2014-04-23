@@ -7,6 +7,9 @@
                  [org.clojure/clojurescript "0.0-2202"]
                  [enlive "1.1.5"]
                  [ring "1.2.2"]
+                 [enfocus "2.0.2"]
+                 [shoreleave/shoreleave-remote-ring "0.3.0"]
+                 [shoreleave/shoreleave-remote "0.3.0"]
                  [compojure "1.1.6"]]
 
   :source-paths ["src/clj" "src/cljs"]
