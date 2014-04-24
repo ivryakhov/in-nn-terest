@@ -6,13 +6,18 @@
   (:require-macros
     [shoreleave.remotes.macros :as macros]))
 
-(defsnippet index-page :compiled "public/prototype/index.html" ["body"]
+(defsnippet index-body :compiled "public/prototype/index_body.html" ["body"]
   []
  ;; "#home-btn a" (set-attr :href "/")
   )
 
+(defsnippet index-head :compiled "public/prototype/index_head.html" ["head"]
+  [])
+
 (defaction init []
-  "body" (ef/content (index-page)))
+  "body" (ef/content (index-body))
+;;  "head" (ef/content (index-head))
+  )
 
 (set! (.-onload js/window) init)
 
