@@ -11,8 +11,6 @@
  ;; "#home-btn a" (set-attr :href "/")
   )
 
-(defsnippet index-head :compiled "public/prototype/index_head.html" ["head"]
-  [])
 
 (defaction init []
   "body" (ef/content (index-body))
