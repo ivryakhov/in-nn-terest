@@ -1,24 +1,24 @@
 (ns in-nn-terest.client
   (:require [enfocus.core :as ef]
-            [in-nn-terest.googmap :as googmap]
-            )
-  (:use-macros
-    [enfocus.macros :only [deftemplate defsnippet defaction]])
-  (:require-macros
-    [shoreleave.remotes.macros :as macros]))
+            [in-nn-terest.googmap :as googmap])
+  (:require-macros [shoreleave.remotes.macros :as macros]
+                   [enfocus.macros :as em]))
 
-(defsnippet index-body :compiled "public/prototype/index_body.html" ["body"]
+(em/defsnippet index-body :compiled "public/prototype/index_body.html" ["body"]
   []
  ;; "#home-btn a" (set-attr :href "/")
   )
 
 
-(defaction init []
-;;  "body" (ef/content (index-body))
-  ["#map_canvas"] (ef/content (googmap/map-load))
+(em/defaction init []
+  "body" (ef/content (index-body))
+;;  ["#map_canvas"] (ef/content (googmap/map-load))
 ;;  "head" (ef/content (index-head))
   )
 
-;;(set! (.-onload js/window) init)
+(defn start []
+  (googmap/map-load))
+
+(set! (.-onload js/window) #(em/wait-for-load (start)))
 
 
