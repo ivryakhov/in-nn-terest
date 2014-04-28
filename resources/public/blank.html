@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta character="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
-    <script src="js/main.js"></script>       
     <link href="css/main.css" rel="stylesheet">
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?sensor=false&language=ru">
     </script>
+    <script src="js/main.js"></script>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'> 
-    <script type="text/javascript">
-      function initialize() {
-          var mapOptions = {
-          center: new google.maps.LatLng(56.265292, 43.989537),zoom: 12,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-      }  
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>                 
   </head>
   <body>
-    
+
+    <div id="map_canvas"><div/>    
   </body>
 </html>

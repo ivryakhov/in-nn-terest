@@ -1,6 +1,7 @@
 (ns in-nn-terest.client
-  (:require
-   [enfocus.core :as ef])
+  (:require [enfocus.core :as ef]
+            [in-nn-terest.googmap :as googmap]
+            )
   (:use-macros
     [enfocus.macros :only [deftemplate defsnippet defaction]])
   (:require-macros
@@ -13,9 +14,11 @@
 
 
 (defaction init []
-  "body" (ef/content (index-body))
+;;  "body" (ef/content (index-body))
+  ["#map_canvas"] (ef/content (googmap/map-load))
 ;;  "head" (ef/content (index-head))
   )
 
-(set! (.-onload js/window) init)
+;;(set! (.-onload js/window) init)
+
 
