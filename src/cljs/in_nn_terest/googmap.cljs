@@ -19,8 +19,11 @@
 
 (defn marker-create []
   (let [l-opts (extend-object! (js-obj) marker-opts)
-        marker (google.maps.Marker. l-opts)]
-    (.setMap marker *map*)))
+        marker (google.maps.Marker. l-opts)
+        info-window (google.maps.InfoWindow. (clj->js {:content "<div id=\"content\">Hello in-nn-terest</div>"}))]
+    (.setMap marker *map*)
+    (.setTitle marker "Hello")
+    (google.maps.event.addListener marker "click" (fn [] (.open info-window *map* marker)))))
 
 ;;(events/listen js/window "load" map-load)
 
