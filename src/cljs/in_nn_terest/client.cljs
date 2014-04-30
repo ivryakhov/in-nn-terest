@@ -18,7 +18,7 @@
 
 (defn start []
   (googmap/map-load)
-  (googmap/marker-load))
+  (googmap/marker-create))
 
 (set! (.-onload js/window) #(em/wait-for-load (start)))
 
