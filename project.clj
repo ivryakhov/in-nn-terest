@@ -22,4 +22,6 @@
               [{:source-paths ["src/cljs"]
                 :compiler {:output-to "resources/public/js/main.js"
                            :optimizations :whitespace
-                           :pretty-print true}}]})
+                           :pretty-print true}}]
+              :repl-listen-port 3000
+              })
