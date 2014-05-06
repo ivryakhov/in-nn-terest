@@ -2,7 +2,7 @@
   (:require [goog.events :as events]
             [goog.dom :as dom]))
 
-(def markers-example
+(def ^:export markers-example
   [{:placename "Нижегородский выставочный комплекс"
     :lat 56.325760
     :lng 44.004964 
@@ -21,16 +21,11 @@
             :mapTypeId google.maps.MapTypeId.ROADMAP
             :center (google.maps.LatLng. 56.278292, 43.989537)}))
 
-
-(defn map-load []
-  (let [elem (goog.dom/getElement "map_canvas")]
-    (do (set! *map* (google.maps.Map. elem map-opts)))))
-
 (def marker-opts {:placename "tatata"
                   :lat 56.326104
                   :lng 44.005434})
 
-(defn marker-display
+(defn ^:export marker-display
   ([] (marker-display (last markers-example)))
   ([opts] (let [lat (:lat opts)
                 lng (:lng opts)
@@ -42,13 +37,16 @@
                 info-window (google.maps.InfoWindow.
                              (clj->js {:content content}))]
             (.setMap marker *map*)
-            (google.maps.event.addListener marker "click" (fn [] (.open
+            (google.maps.event.addListener marker "mouseover" (fn [] (.open
                                                                  info-window *map* marker)))
             marker)))
 
 (defn ^:export show-events []
-  (map #(println (str %)) markers-example))
+  (dorun (map marker-display markers-example)))
 
+(defn map-load []
+  (let [elem (goog.dom/getElement "map_canvas")]
+    (set! *map* (google.maps.Map. elem map-opts))))
 ;;(events/listen js/window "load" map-load)
 
 

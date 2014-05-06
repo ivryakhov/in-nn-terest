@@ -1,6 +1,7 @@
 (ns in-nn-terest.client
   (:require [enfocus.core :as ef]
-            [in-nn-terest.googmap :as googmap])
+            [in-nn-terest.googmap :as googmap]
+            [in-nn-terest.connect :as in-connect])
   (:require-macros [shoreleave.remotes.macros :as macros]
                    [enfocus.macros :as em]))
 
@@ -17,9 +18,10 @@
   )
 
 (defn start []
-  (googmap/map-load)
-  (googmap/show-events))
+  (do (googmap/map-load)
+      (googmap/show-events)))
 
-(set! (.-onload js/window) #(em/wait-for-load (start)))
+(set! (.-onload js/window) start)
+
 
 
