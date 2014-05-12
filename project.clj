@@ -10,7 +10,8 @@
                  [enfocus "2.0.2"]
                  [shoreleave/shoreleave-remote-ring "0.3.0"]
                  [shoreleave/shoreleave-remote "0.3.0"]
-                 [compojure "1.1.6"]]
+                 [compojure "1.1.6"]
+                 [clj-time "0.7.0"]]
 
   :source-paths ["src/clj" "src/cljs"]
   :plugins [[lein-cljsbuild "1.0.3"]
