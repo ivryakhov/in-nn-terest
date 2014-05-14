@@ -16,6 +16,9 @@
 (defn select-attrs [url-data tags attr]
   (mapv attr (map :attrs (enht/select url-data tags))))
 
+(defn parse-int [int-str]
+  (Integer/parseInt int-str))
+
 (def mnthname->num
   {"января"   1
    "февраля"  2
@@ -33,21 +36,33 @@
 (defn parse-date [date-str]
   (let [date-vec (string/split date-str #"\s")
         date-map (match date-vec
-                         ["С" begin-day begin-month begin-year "до" end-day end-month end-year & rest]
-                         [{:begin-day   begin-day
-                           :begin-month (mnthname->num begin-month)
-                           :begin-year  begin-year
-                           :end-day   end-day
-                           :end-month (mnthname->num end-month)
-                           :end-year  end-year}]
-                         :else rest)]
+                         ["С" begin-day begin-month begin-year "до" end-day end-month end-year]
+                         {:begin-day   (parse-int begin-day)
+                          :begin-month (mnthname->num begin-month)
+                          :begin-year  (parse-int begin-year)
+                          :end-day   (parse-int end-day)
+                          :end-month (mnthname->num end-month)
+                          :end-year  (parse-int end-year)}
+                         :else nil)]
     date-map))
 
-(defn date-map->cljtime [date-map]
-  )
+(defn date-map->cljtime [{:keys [begin-day
+                                 begin-month
+                                 begin-year
+                                 end-day
+                                 end-month
+                                 end-year]}]
+  (let [begin-date (ctc/date-time begin-year begin-month begin-day)
+        end-date (ctc/date-time end-year end-month end-day)]
+    {:begin begin-date :end end-date}))
 
 (defn select-dates [url-data tags]
-  (mapv last (map :content (enht/select url-data tags))))
+  (mapv #(-> %
+             :content 
+             last
+             parse-date
+             date-map->cljtime)
+        (enht/select url-data tags)))
 
 
 (defn scrape-events [url]
