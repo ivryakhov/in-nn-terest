@@ -12,7 +12,8 @@
                  [shoreleave/shoreleave-remote "0.3.0"]
                  [compojure "1.1.6"]
                  [clj-time "0.7.0"]
-                 [org.clojure/core.match "0.2.1"]]
+                 [org.clojure/core.match "0.2.1"]
+                 [com.datomic/datomic-free "0.9.4766"]]
 
   :source-paths ["src/clj" "src/cljs"]
   :plugins [[lein-cljsbuild "1.0.3"]
