@@ -18,6 +18,43 @@
 
  {:db/ident       :place/events
   :db/valueType   :db.type/ref
+  :db/isComponent true
   :db/cardinality :db.cardinality/many
   :db/id          (d/tempid :db.part/db)
-               :db.install/_attribute :db.part/db}]
+  :db.install/_attribute :db.part/db}
+
+ {:db/ident       :event/title
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/id          (d/tempid :db.part/db)
+  :db.install/_attribute :db.part/db}
+
+ {:db/ident       :event/headline
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/id          (d/tempid :db.part/db)
+  :db.install/_attribute :db.part/db}
+
+ {:db/ident       :event/link
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/id          (d/tempid :db.part/db)
+  :db.install/_attribute :db.part/db}
+
+ {:db/ident       :event/description
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/id          (d/tempid :db.part/db)
+  :db.install/_attribute :db.part/db}
+
+ {:db/ident       :event/begin-date
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/id          (d/tempid :db.part/db)
+  :db.install/_attribute :db.part/db}
+
+ {:db/ident       :event/end-date
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/id          (d/tempid :db.part/db)
+  :db.install/_attribute :db.part/db}]
