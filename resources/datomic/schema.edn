@@ -23,7 +23,7 @@
   :db/id          (d/tempid :db.part/db)
   :db.install/_attribute :db.part/db}
 
- {:db/ident       :event/title
+ {:db/ident       :event/headline
   :db/valueType   :db.type/string
   :db/cardinality :db.cardinality/one
   :db/id          (d/tempid :db.part/db)
