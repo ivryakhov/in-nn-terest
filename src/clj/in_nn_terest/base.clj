@@ -1,9 +1,11 @@
 (ns in-nn-terest.base
-  (:require [datomic.api :as d]))
+  (:require [datomic.api :as d]
+            [clj-time.core :as ctc]
+            [clj-time.format :as ctf]))
 
 ;;(def uri "datomic:free://localhost:4334/in-nn-terest-db")
-(def uri "datomic:mem://localhost:4334/in-nn-terest-db")
-(def conn (d/connect uri))
+(def uri "datomic:mem://in-nn-terest-db")
+;;(def conn (d/connect uri))
 
 (def schema (load-file "resources/datomic/schema.edn"))
 
@@ -49,5 +51,11 @@
 
 (defn init-db []
   (d/create-database uri)
+  (def conn (d/connect uri))
   @(d/transact conn schema)
   (load-sample-data sample-data))
+
+(defn select-events-for-date [cljtime-date]
+  (d/q '[:find ?id ?begin-date ?end-date
+         :where [?id :event/begin-date ?begin-date] [?id :event/end-date ?end-date]]
+       (d/db conn)))
