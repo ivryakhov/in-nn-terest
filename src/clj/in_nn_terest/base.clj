@@ -5,7 +5,8 @@
 
 ;;(def uri "datomic:free://localhost:4334/in-nn-terest-db")
 (def uri "datomic:mem://in-nn-terest-db")
-;;(def conn (d/connect uri))
+(d/create-database uri)
+(def conn (d/connect uri))
 
 (def schema (load-file "resources/datomic/schema.edn"))
 
@@ -50,8 +51,6 @@
   (map process-place sample-data))
 
 (defn init-db []
-  (d/create-database uri)
-  (def conn (d/connect uri))
   @(d/transact conn schema)
   (load-sample-data sample-data))
 
