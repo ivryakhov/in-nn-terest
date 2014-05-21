@@ -54,7 +54,17 @@
   @(d/transact conn schema)
   (load-sample-data sample-data))
 
+(defn str->cljt [date-str]
+  (ctf/parse (ctf/formatter "dd-MM-yyyy") date-str))
+
+(defn check-int [d-begin d-end d-check]
+  (ctc/within? (str->cljt d-begin) (str->cljt d-end) d-check))
+
 (defn select-events-for-date [cljtime-date]
   (d/q '[:find ?id ?begin-date ?end-date
-         :where [?id :event/begin-date ?begin-date] [?id :event/end-date ?end-date]]
-       (d/db conn)))
+         :in $ ?check-date
+         :where
+         [?id :event/begin-date ?begin-date]
+         [?id :event/end-date ?end-date]
+         [(in-nn-terest.base/check-int ?begin-date ?end-date ?check-date)]]
+       (d/db conn) cljtime-date))
