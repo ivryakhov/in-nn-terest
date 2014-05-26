@@ -61,10 +61,12 @@
   (ctc/within? (str->cljt d-begin) (str->cljt d-end) d-check))
 
 (defn select-events-for-date [cljtime-date]
-  (d/q '[:find ?eid ?begin-date ?end-date
+  (d/q '[:find ?pname (distinct ?eid ?begin-date) 
          :in $ ?check-date
          :where
          [?eid :event/begin-date ?begin-date]
          [?eid :event/end-date ?end-date]
+         [?pid :place/events ?eid]
+         [?pid :place/name ?pname]
          [(in-nn-terest.base/check-int ?begin-date ?end-date ?check-date)]]
        (d/db conn) cljtime-date))
