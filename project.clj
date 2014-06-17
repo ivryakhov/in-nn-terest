@@ -7,9 +7,6 @@
                  [org.clojure/clojurescript "0.0-2202"]
                  [enlive "1.1.5"]
                  [ring "1.2.2"]
-                 [enfocus "2.0.2"]
-                 [shoreleave/shoreleave-remote-ring "0.3.0"]
-                 [shoreleave/shoreleave-remote "0.3.0"]
                  [compojure "1.1.6"]
                  [clj-time "0.7.0"]
                  [org.clojure/core.match "0.2.1"]
@@ -24,9 +21,15 @@
   :ring {:handler in-nn-terest.core/handler}
   
   :cljsbuild {:builds
-              [{:source-paths ["src/cljs"]
-                :compiler {:output-to "resources/public/js/main.js"
+              [{:source-paths ["src/cljs/googmap"]
+                :compiler {:output-to "resources/public/js/googmap.js"
                            :optimizations :whitespace
+                           :pretty-print true}}
+               {:source-paths ["src/cljs/datepicker"]
+                :compiler {:output-to "resources/public/js/datepicker.js"
+                           :output-dir "resources/public/js/out"
+                           :optimizations :none
+                           :source-map true
                            :pretty-print true}}]
               :repl-listen-port 3000
               })

@@ -7,7 +7,7 @@
             ))
 
 (defroutes app-routes
-  (GET "/" [] (resource-response "blank.html" {:root "public"}))
+  (GET "/" [] (resource-response "index.html" {:root "public"}))
   (route/resources "/")
   (route/not-found "Not found"))
 

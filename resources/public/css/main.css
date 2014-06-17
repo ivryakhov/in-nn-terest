@@ -11,6 +11,10 @@ body {
     font-size: 14px;
 }
 
+#map-canvas {
+    height: 100%
+}
+
 #toolbar {
     float: left;
     length: 200px;

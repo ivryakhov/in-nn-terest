@@ -5,16 +5,14 @@
 (def ^:export markers-example
   [{:placename "Нижегородский выставочный комплекс"
     :lat 56.325760
-    :lng 44.004964 
-    :content "<div id=\"content\">Выставка чайных ложек.</div>"
-    }
+    :lng 44.004964
+    :content "<div id=\"content\">Выставка чайных ложек.</div>"}
    {:placename "Государственный центр современного искусства Арсенал"
     :lat 56.328876
     :lng 44.007029
     :content "<div id=\"content\">Современная мазня как аллюзия на первобытное творчество.</div>"}])
 
-
-(def *map* nil)
+(def *map*)
 
 (def map-opts
   (clj->js {:zoom 12
@@ -38,17 +36,18 @@
                              (clj->js {:content content}))]
             (.setMap marker *map*)
             (google.maps.event.addListener marker "mouseover" (fn [] (.open
-                                                                 info-window *map* marker)))
+                                                                     info-window *map* marker)))
             marker)))
 
 (defn ^:export show-events []
   (dorun (map marker-display markers-example)))
 
 (defn map-load []
-  (let [elem (goog.dom/getElement "map_canvas")]
+  (let [elem (goog.dom/getElement "map-canvas")]
     (set! *map* (google.maps.Map. elem map-opts))))
-;;(events/listen js/window "load" map-load)
 
+(defn start []
+  (do (map-load)
+      (show-events)))
 
-
-
+(events/listen js/window "load" start)
