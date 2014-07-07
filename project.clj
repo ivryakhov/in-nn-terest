@@ -12,7 +12,8 @@
                  [org.clojure/core.match "0.2.1"]
                  [com.datomic/datomic-free "0.9.4766"]
                  [org.clojure/core.async "0.1.303.0-886421-alpha"]
-                 [om "0.5.0"]]
+                 [om "0.5.0"]
+                 [com.andrewmcveigh/cljs-time "0.1.5"]]
 
   :source-paths ["src/clj" "src/cljs"]
   :plugins [[lein-cljsbuild "1.0.3"]
