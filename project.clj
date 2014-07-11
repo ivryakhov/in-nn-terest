@@ -22,15 +22,10 @@
   :ring {:handler in-nn-terest.core/handler}
   
   :cljsbuild {:builds
-              [{:source-paths ["src/cljs/googmap"]
-                :compiler {:output-to "resources/public/js/googmap.js"
+              [{:source-paths ["src/cljs"]
+                :compiler {:output-to "resources/public/js/in_nn_terest.js"
                            :optimizations :whitespace
                            :pretty-print true}}
-               {:source-paths ["src/cljs/datepicker"]
-                :compiler {:output-to "resources/public/js/datepicker.js"
-                           :output-dir "resources/public/js/out"
-                           :optimizations :none
-                           :source-map true
-                           :pretty-print true}}]
+]
               :repl-listen-port 3000
               })
