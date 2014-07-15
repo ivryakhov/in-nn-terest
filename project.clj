@@ -25,7 +25,6 @@
               [{:source-paths ["src/cljs"]
                 :compiler {:output-to "resources/public/js/in_nn_terest.js"
                            :optimizations :whitespace
-                           :pretty-print true}}
-]
-              :repl-listen-port 3000
+                           :pretty-print true}}]
+
               })

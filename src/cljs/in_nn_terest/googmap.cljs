@@ -43,7 +43,7 @@
   (dorun (map marker-display markers-example)))
 
 (defn map-load []
-  (let [elem (goog.dom/getElement "map-canvas")]
+  (let [elem (dom/getElement "map-canvas")]
     (set! *map* (google.maps.Map. elem map-opts))))
 
 (defn start []

@@ -1,6 +1,16 @@
-(ns in-nn-terest.datepicker)
+(ns in-nn-terest.datepicker
+  (:require [goog.dom :as dom]
+            [goog.events :as events])
+  (:import  [goog.ui DatePicker]))
 
-(enable-console-print!)
 
-(def week-days ["Пн" "Вт" "Ср" "Чт" "Пт" "Сб" "Вс"])
+(defn put-datepicker []
+  (let [elem (dom/getElement "datepicker")
+        dp (DatePicker. nil goog.i18n.DateTimeSymbols_ru)]
+    (.setShowWeekNum dp false)
+    (.setShowFixedNumWeeks dp false)
+    (.render dp elem)
+    dp))
+
+(events/listen js/window "load" put-datepicker)
 
