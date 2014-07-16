@@ -9,6 +9,7 @@
         dp (DatePicker. nil goog.i18n.DateTimeSymbols_ru)]
     (.setShowWeekNum dp false)
     (.setShowFixedNumWeeks dp false)
+    (.setAllowNone dp false)
     (.render dp elem)
     dp))
 

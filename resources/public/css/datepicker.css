@@ -16,10 +16,8 @@
  * @author arv@google.com (Erik Arvidsson)
  */
 
-.goog-date-picker,
-.goog-date-picker th,
-.goog-date-picker td {
-  font: 12px;
+:focus {
+  outline: none;
 }
 
 .goog-date-picker {
@@ -39,6 +37,14 @@
 
 .goog-date-picker th {
   text-align: center;
+}
+
+th {
+  font-weight: normal;
+}
+
+table {
+  border-color: transparent;
 }
 
 .goog-date-picker td {
@@ -72,7 +78,7 @@
 }
 
 .goog-date-picker th {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .goog-date-picker td div {
